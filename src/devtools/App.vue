@@ -4,6 +4,7 @@
     <div v-for="(item, index) in urls" :key="index">
       {{ item.url }} {{ item }}
     </div>
+    {{ key }}
   </div>
 </template>
 
@@ -14,13 +15,14 @@ export default {
   name: 'App',
   data() {
     return {
-      urls: []
+      urls: [],
+      key: ''
     }
   },
   mounted() {
     let key = ''
-    chrome.storage.sync.get('sm4_string', function(result) {
-      key = result
+    chrome.storage.sync.get(['key'], (result) => {
+      this.key = result
     });
     chrome.devtools.network.onRequestFinished.addListener(
       (res) => {
@@ -35,7 +37,7 @@ export default {
   },
   methods: {
     handleClickClear() {
-      this.list = []
+      this.urls = []
     }
   }
 }

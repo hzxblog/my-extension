@@ -9,14 +9,14 @@ export default {
   name: 'App',
   components: { HelloWorld },
   mounted() {
-    chrome.devtools.panels.create(
-      // title
-      '加密解密',
-      // iconPath
-      null,
-      // pagePath
-      'devtools.html'
-    );
+    // chrome.devtools.panels.create(
+    //   // title
+    //   '加密解密',
+    //   // iconPath
+    //   null,
+    //   // pagePath
+    //   'devtools.html'
+    // );
   },
 }
 </script>

@@ -1,13 +1,18 @@
 <template>
-  <hello-world />
+  <div>
+    {{ key }}
+  </div>
 </template>
 
 <script>
-import HelloWorld from '@/components/HelloWorld.vue'
 
 export default {
   name: 'App',
-  components: { HelloWorld }
+  computed: {
+    key() {
+      return JSON.stringify(window.localStorage)
+    },
+  },
 }
 </script>
 
