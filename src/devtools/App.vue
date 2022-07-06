@@ -8,6 +8,7 @@
 </template>
 
 <script>
+import { decrypt } from 'commontools'
 
 export default {
   name: 'App',
@@ -17,9 +18,14 @@ export default {
     }
   },
   mounted() {
+    let key = ''
+    chrome.storage.sync.get('sm4_string', function(result) {
+      key = result
+    });
     chrome.devtools.network.onRequestFinished.addListener(
       (res) => {
         const request = res.request
+        request.sm4_string = key
         this.urls.push(request)
         res.getContent((content) => {
           request.responseData = content
